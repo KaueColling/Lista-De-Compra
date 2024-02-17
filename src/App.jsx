@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
-
-  const [count, setCount] = useState(0)
 
   const [itens, setItens] = useState([]);
 
@@ -26,11 +21,10 @@ function App() {
     if (textoDeEntrada.trim() !== '') {
       const novoItem = {
         titulo: textoDeEntrada,
-        count: count,
+        quantidade: 0, // Adicionando quantidade ao novo item
       };
       setItens([...itens, novoItem]);
       setTextoDeEntrada('');
-      setCount(0); // Corrigido: redefinir count para 0
       salvarDetalhesNoLocalStorage([...itens, novoItem]);
     }
   };
@@ -43,11 +37,17 @@ function App() {
   };
 
   const removerQtda = (indice) => {
-    setCount(count < 1 ? 0 : count - 1);
+    const itensAtualizados = [...itens];
+    itensAtualizados[indice].quantidade = Math.max(0, itensAtualizados[indice].quantidade - 1);
+    setItens(itensAtualizados);
+    salvarDetalhesNoLocalStorage(itensAtualizados);
   };
 
   const adicionarQtda = (indice) => {
-    setCount(count + 1);
+    const itensAtualizados = [...itens];
+    itensAtualizados[indice].quantidade = itensAtualizados[indice].quantidade + 1;
+    setItens(itensAtualizados);
+    salvarDetalhesNoLocalStorage(itensAtualizados);
   };
 
   return (
@@ -75,10 +75,10 @@ function App() {
               <li className='item' key={indice}>
                 <hr></hr>
                 <div className='divNomeLivro'>
-                  {item.titulo} - {item.status}
+                  {item.titulo}
 
                   <button className='buttonExcluir' onClick={() => removerQtda(indice)}>-</button>
-                  <h3>{count}</h3>
+                  {item.quantidade}
                   <button className='buttonExcluir' onClick={() => adicionarQtda(indice)}>+</button>
                   
                   <button className='buttonExcluir' onClick={() => excluirItem(indice)}>Excluir</button>
