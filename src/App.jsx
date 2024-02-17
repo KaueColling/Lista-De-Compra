@@ -26,10 +26,11 @@ function App() {
     if (textoDeEntrada.trim() !== '') {
       const novoItem = {
         titulo: textoDeEntrada,
+        count: count,
       };
       setItens([...itens, novoItem]);
       setTextoDeEntrada('');
-      setCount('');
+      setCount(0); // Corrigido: redefinir count para 0
       salvarDetalhesNoLocalStorage([...itens, novoItem]);
     }
   };
@@ -39,6 +40,14 @@ function App() {
     itensAtualizados.splice(indice, 1);
     setItens(itensAtualizados);
     salvarDetalhesNoLocalStorage(itensAtualizados);
+  };
+
+  const removerQtda = (indice) => {
+    setCount(count < 1 ? 0 : count - 1);
+  };
+
+  const adicionarQtda = (indice) => {
+    setCount(count + 1);
   };
 
   return (
@@ -68,9 +77,9 @@ function App() {
                 <div className='divNomeLivro'>
                   {item.titulo} - {item.status}
 
-                  <button className='buttonExcluir' onClick={() => adicionarMaisItem(indice)}>+</button>
-                  
-                  <button className='buttonExcluir' onClick={() => adicionarMaisItem(indice)}>+</button>
+                  <button className='buttonExcluir' onClick={() => removerQtda(indice)}>-</button>
+                  <h3>{count}</h3>
+                  <button className='buttonExcluir' onClick={() => adicionarQtda(indice)}>+</button>
                   
                   <button className='buttonExcluir' onClick={() => excluirItem(indice)}>Excluir</button>
                 </div>
