@@ -52,36 +52,52 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1> Lista de Compras </h1>
-        <h2> Adicionar Items </h2>
+      <div className='flex flex-col gap-4 py-[30px] px-[235px]'>
+        <h1 className='text-3xl font-bold'> Lista de Compras </h1>
+        <h2 className='text-2xl font-medium'> Adicionar itens a lista </h2>
 
-        <div className='ParteDaLista'>
-          <div className="forma">
+        <div>
+          <div>
             <input
-              className="inputNomeItem"
+              className='bg-fundo border-2 border-azul rounded-2xl w-full p-2 text-lg'
               type="text"
               placeholder="Nome do Item"
               value={textoDeEntrada}
               onChange={(e) => setTextoDeEntrada(e.target.value)}
             />
           </div>
-          <button className='btAdicionarLivro' onClick={adicionarItem}>Adicionar Item</button>
+          <button className='mt-4 bg-roxoescuro py-2 pr-4 pl-2 text-fundo rounded-lg' onClick={adicionarItem}>Adicionar</button>
         </div>
 
-        <div className='items'>
-          <ol className='UL'>
+        <div>
+          <ol className='list-decimal list-inside'>
             {itens.map((item, indice) => (
               <li className='item' key={indice}>
                 <hr></hr>
-                <div className='divNomeLivro'>
+                <div>
                   {item.titulo}
 
-                  <button className='buttonExcluir' onClick={() => removerQtda(indice)}>-</button>
-                  {item.quantidade}
-                  <button className='buttonExcluir' onClick={() => adicionarQtda(indice)}>+</button>
-                  
-                  <button className='buttonExcluir' onClick={() => excluirItem(indice)}>Excluir</button>
+                  <div className='flex flex-row justify-between'>
+                    <div className='flex flex-row items-center gap-1'>
+                      <button className='bg-roxoescuro text-fundo p-2 w-12 font-bold rounded-lg'
+                        onClick={() => removerQtda(indice)}>
+                        -
+                      </button>
+
+                      <p className='bg-fundo text-roxoescuro p-2 w-12 font-bold rounded-lg'>
+                        {item.quantidade}
+                      </p>
+
+                      <button className='bg-roxoescuro text-fundo p-2 w-12 font-bold rounded-lg'
+                        onClick={() => adicionarQtda(indice)}>
+                        +
+                      </button>
+                    </div>
+                    <button className='bg-roxoescuro text-fundo p-2 font-bold rounded-lg'
+                      onClick={() => excluirItem(indice)}>
+                      Excluir
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
