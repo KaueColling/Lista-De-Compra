@@ -6,6 +6,8 @@ function App() {
 
   const [textoDeEntrada, setTextoDeEntrada] = useState('');
 
+  const [quantidades, setQuantidades] = useState('');
+
   const salvarDetalhesNoLocalStorage = (itensAtualizados) => {
     localStorage.setItem('itens', JSON.stringify(itensAtualizados));
   };
@@ -21,10 +23,11 @@ function App() {
     if (textoDeEntrada.trim() !== '') {
       const novoItem = {
         titulo: textoDeEntrada,
-        quantidade: 0, // Adicionando quantidade ao novo item
+        quantidade: quantidades, // Adicionando quantidade ao novo item
       };
       setItens([...itens, novoItem]);
       setTextoDeEntrada('');
+      setQuantidades('');
       salvarDetalhesNoLocalStorage([...itens, novoItem]);
     }
   };
@@ -32,20 +35,6 @@ function App() {
   const excluirItem = (indice) => {
     const itensAtualizados = [...itens];
     itensAtualizados.splice(indice, 1);
-    setItens(itensAtualizados);
-    salvarDetalhesNoLocalStorage(itensAtualizados);
-  };
-
-  const removerQtda = (indice) => {
-    const itensAtualizados = [...itens];
-    itensAtualizados[indice].quantidade = Math.max(0, itensAtualizados[indice].quantidade - 1);
-    setItens(itensAtualizados);
-    salvarDetalhesNoLocalStorage(itensAtualizados);
-  };
-
-  const adicionarQtda = (indice) => {
-    const itensAtualizados = [...itens];
-    itensAtualizados[indice].quantidade = itensAtualizados[indice].quantidade + 1;
     setItens(itensAtualizados);
     salvarDetalhesNoLocalStorage(itensAtualizados);
   };
@@ -59,11 +48,19 @@ function App() {
         <div>
           <div>
             <input
-              className='bg-fundo border-2 border-azul rounded-2xl w-full p-2 text-lg'
+              className='bg-fundoPlaceholder my-2 border-2 border-azul rounded-2xl w-full p-2 text-lg'
               type="text"
               placeholder="Nome do Item"
               value={textoDeEntrada}
               onChange={(e) => setTextoDeEntrada(e.target.value)}
+            />
+
+            <input
+              className='bg-fundoPlaceholder my-2 border-2 border-azul rounded-2xl w-full p-2 text-lg'
+              type="number"
+              placeholder="Quantidade de itens"
+              value={quantidades}
+              onChange={(e) => setQuantidades(e.target.value)}
             />
           </div>
           <button className='mt-4 bg-roxoescuro py-2 pr-4 pl-2 text-fundo rounded-lg' onClick={adicionarItem}>Adicionar</button>
@@ -75,37 +72,19 @@ function App() {
               <li className='item' key={indice}>
                 <hr></hr>
                 <div>
-                  {item.titulo}
-
-                  <div className='flex flex-row justify-between'>
-                    <div className='flex flex-row items-center gap-1'>
-                      <button className='bg-roxoescuro text-fundo p-2 w-12 font-bold rounded-lg'
-                        onClick={() => removerQtda(indice)}>
-                        -
-                      </button>
-
-                      <p className='bg-fundo text-roxoescuro p-2 w-12 font-bold rounded-lg'>
-                        {item.quantidade}
-                      </p>
-
-                      <button className='bg-roxoescuro text-fundo p-2 w-12 font-bold rounded-lg'
-                        onClick={() => adicionarQtda(indice)}>
-                        +
-                      </button>
-                    </div>
-                    <button className='bg-roxoescuro text-fundo p-2 font-bold rounded-lg'
-                      onClick={() => excluirItem(indice)}>
-                      Excluir
-                    </button>
-                  </div>
+                  {item.titulo} {item.quantidade}
                 </div>
+                <button className='bg-roxoescuro text-fundo p-2 font-bold rounded-lg'
+                  onClick={() => excluirItem(indice)}>
+                  Excluir
+                </button>
               </li>
             ))}
           </ol>
         </div>
 
       </div>
-    </div>
+    </div >
   )
 }
 

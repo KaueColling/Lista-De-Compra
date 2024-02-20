@@ -7,8 +7,8 @@ export default {
   theme: {
     colors: {
       'roxoescuro': '#4c1d95',
-      'fundo': '#ede9fe',
-      'fundoTeste': '#f2f2f2',
+      'fundo': '#faf5ff',
+      'fundoPlaceholder': '#fafafa',
     },
   },
   plugins: [],
