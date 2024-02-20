@@ -51,9 +51,9 @@ function App() {
   };
 
   return (
-    <>
-      <div className='flex flex-col gap-4 py-[30px] px-[235px]'>
-        <h1 className='text-3xl font-bold'> Lista de Compras </h1>
+    <div className='bg-fundo h-dvh flex flex-col gap-4 grid justify-items-center '>
+      <div className=' w-11/12 pt-6'>
+        <h1 className='text-3xl font-bold '> Lista de Compras </h1>
         <h2 className='text-2xl font-medium'> Adicionar itens a lista </h2>
 
         <div>
@@ -105,7 +105,7 @@ function App() {
         </div>
 
       </div>
-    </>
+    </div>
   )
 }
 
