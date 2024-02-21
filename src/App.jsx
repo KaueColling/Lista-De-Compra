@@ -40,49 +40,54 @@ function App() {
   };
 
   return (
-    <div className='bg-fundo h-dvh flex flex-col gap-4 grid justify-items-center '>
-      <div className=' w-11/12 pt-6'>
-        <h1 className='text-3xl font-bold '> Lista de Compras </h1>
-        <h2 className='text-2xl font-medium'> Adicionar itens a lista </h2>
+    <div className='bg-fundo h-dvh flex flex-row flex justify-evenly py-8'>
 
-        <div>
-          <div>
-            <input
-              className='bg-fundoPlaceholder my-2 border-2 border-azul rounded-2xl w-full p-2 text-lg'
-              type="text"
-              placeholder="Nome do Item"
-              value={textoDeEntrada}
-              onChange={(e) => setTextoDeEntrada(e.target.value)}
-            />
+      <div>
+        <h1 className='font-mono text-4xl font-semibold'> Lista de Compras </h1>
+        <h2 className='font-mono text-3xl font-regular my-2'> Adicionar itens a lista </h2>
 
-            <input
-              className='bg-fundoPlaceholder my-2 border-2 border-azul rounded-2xl w-full p-2 text-lg'
-              type="number"
-              placeholder="Quantidade de itens"
-              value={quantidades}
-              onChange={(e) => setQuantidades(e.target.value)}
-            />
-          </div>
-          <button className='mt-4 bg-roxoescuro py-2 pr-4 pl-2 text-fundo rounded-lg' onClick={adicionarItem}>Adicionar</button>
+        <div className='flex flex-col'>
+          <input
+            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 font-mono text-1xl font-regular'
+            type="text"
+            placeholder="Nome do Item"
+            value={textoDeEntrada}
+            onChange={(e) => setTextoDeEntrada(e.target.value)}
+          />
+
+          <input
+            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 font-mono text-1xl font-regular'
+            type="number"
+            placeholder="Quantidade de itens"
+            value={quantidades}
+            onChange={(e) => setQuantidades(e.target.value)}
+          />
         </div>
+        <button className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro font-mono my-2 p-1.5 text-1xl font-regular w-6/12' onClick={adicionarItem}>Adicionar</button>
+      </div>
 
-        <div>
-          <ol className='list-decimal list-inside'>
-            {itens.map((item, indice) => (
-              <li className='item' key={indice}>
-                <hr></hr>
-                <div>
-                  {item.titulo} {item.quantidade}
+      <div className='w-2/4'>
+        <ol>
+          {itens.map((item, indice) => (
+            <li key={indice}>
+
+              <div>
+                <div className='flex flex-row flex justify-between'>
+                  {item.titulo}
+
+                  <h1>qtda - {item.quantidade}</h1>
+
                 </div>
-                <button className='bg-roxoescuro text-fundo p-2 font-bold rounded-lg'
-                  onClick={() => excluirItem(indice)}>
-                  Excluir
-                </button>
-              </li>
-            ))}
-          </ol>
-        </div>
 
+                <hr></hr>
+              </div>
+              <button
+                onClick={() => excluirItem(indice)}>
+                Excluir
+              </button>
+            </li>
+          ))}
+        </ol>
       </div>
     </div >
   )
