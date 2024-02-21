@@ -40,7 +40,7 @@ function App() {
   };
 
   return (
-    <div className='bg-fundo h-dvh flex flex-col justify-evenly md:flex-row  px-12 md:px-10  py-12 md:py-8'>
+    <div className='bg-fundo h-dvh flex flex-col justify-evenly md:flex-row  px-12 md:px-10  py-8 md:py-2'>
 
       <div>
         <h1 className='font-mono text-2xl md:text-4xl font-semibold'> Lista de Compras </h1>
