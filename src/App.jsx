@@ -63,32 +63,41 @@ function App() {
             onChange={(e) => setQuantidades(e.target.value)}
           />
         </div>
-        <button className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro font-mono my-2 p-1.5 text-1xl font-regular w-6/12' onClick={adicionarItem}>Adicionar</button>
+        <button
+          className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro font-mono my-2 p-1.5 text-1xl font-regular w-6/12'
+          onClick={adicionarItem}>
+          Adicionar
+        </button>
       </div>
 
       <div className='w-2/4'>
-        <ol>
+        <ol className='list-decimal list-image-[url(checkmark.png)]'>
           {itens.map((item, indice) => (
+
             <li key={indice}>
 
               <div>
                 <div className='flex flex-row flex justify-between'>
-                  {item.titulo}
 
-                  <h1>qtda - {item.quantidade}</h1>
+                  <h1 className='font-mono text-1xl font-regular'>{item.titulo}</h1>
+
+                  <h1 className='font-mono text-1xl font-regular'>qtda - {item.quantidade}</h1>
 
                 </div>
 
                 <hr></hr>
               </div>
               <button
+                className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro font-mono my-2 p-1.5 text-1xl font-regular w-6/12'
                 onClick={() => excluirItem(indice)}>
                 Excluir
               </button>
             </li>
+
           ))}
         </ol>
       </div>
+
     </div >
   )
 }
