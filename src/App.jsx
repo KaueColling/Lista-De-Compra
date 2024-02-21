@@ -38,8 +38,10 @@ function App() {
     setItens(itensAtualizados);
     salvarDetalhesNoLocalStorage(itensAtualizados);
   };
+  
 
   return (
+    
     <div className='bg-fundo h-dvh flex flex-col justify-evenly md:flex-row  px-12 md:px-10  py-8 md:py-2'>
 
       <div>
