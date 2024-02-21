@@ -40,15 +40,15 @@ function App() {
   };
 
   return (
-    <div className='bg-fundo h-dvh flex flex-row flex justify-evenly py-8'>
+    <div className='bg-fundo h-dvh flex flex-col justify-evenly md:flex-row  px-12 md:px-10  py-12 md:py-8'>
 
       <div>
-        <h1 className='font-mono text-4xl font-semibold'> Lista de Compras </h1>
-        <h2 className='font-mono text-3xl font-regular my-2'> Adicionar itens a lista </h2>
+        <h1 className='font-mono text-2xl md:text-4xl font-semibold'> Lista de Compras </h1>
+        <h2 className='font-mono text-1xl md:text-3xl font-regular my-2'> Adicionar itens a lista </h2>
 
         <div className='flex flex-col'>
           <input
-            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 font-mono text-1xl font-regular'
+            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 font-mono text-1xl md:text-xl font-regular'
             type="text"
             placeholder="Nome do Item"
             value={textoDeEntrada}
@@ -56,7 +56,7 @@ function App() {
           />
 
           <input
-            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 font-mono text-1xl font-regular'
+            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 font-mono text-1xl md:text-xl font-regular'
             type="number"
             placeholder="Quantidade de itens"
             value={quantidades}
@@ -70,16 +70,16 @@ function App() {
         </button>
       </div>
 
-      <div className='w-2/4'>
-        <ol className='list-decimal list-image-[url(checkmark.png)]'>
+      <div className='md:w-2/4 overflow-auto'>
+        <ol className='list-decimal font-mono text-1xl font-regular mt-8'>
           {itens.map((item, indice) => (
 
-            <li key={indice}>
+            <li key={indice} className='font-mono text-1xl font-regular'>
 
               <div>
-                <div className='flex flex-row flex justify-between'>
+                <div className='flex flex-row justify-between'>
 
-                  <h1 className='font-mono text-1xl font-regular'>{item.titulo}</h1>
+                  <h1 className=''>{item.titulo}</h1>
 
                   <h1 className='font-mono text-1xl font-regular'>qtda - {item.quantidade}</h1>
 
@@ -87,13 +87,22 @@ function App() {
 
                 <hr></hr>
               </div>
-              <button
-                className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro font-mono my-2 p-1.5 text-1xl font-regular w-6/12'
-                onClick={() => excluirItem(indice)}>
-                Excluir
-              </button>
-            </li>
 
+              <div className='flex flex-row justify-between items-center'>
+
+                <label className=''>
+                  <input type="checkbox" class="accent-roxomaisescuro size-5 bg-fundo" />
+                </label>
+
+                <button
+                  className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro font-mono my-2 p-1.5 text-1xl font-regular w-6/12'
+                  onClick={() => excluirItem(indice)}>
+                  Excluir
+                </button>
+
+              </div>
+
+            </li>
           ))}
         </ol>
       </div>
