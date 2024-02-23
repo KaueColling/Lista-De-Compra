@@ -6,13 +6,17 @@ export default {
   ],
   theme: {
     colors: {
-      'roxoescuro': '#c084fc',
+      'roxoescuro': '#4f518c',
       'roxomaisclaro': '#e9d5ff',
-      'roxomaisescuro': '#3b0764',
+      'roxomaisescuro': '#2c2a4a',
       'fundo': '#faf5ff',
       'fundoPlaceholder': '#fafafa',
       'branco': '#f8fafc',
       'preto': '#020202'
+    },
+    fontFamily: {
+      'anton': ['Anton'],
+      'montserrat': ['Montserrat'],
     },
   },
   plugins: [],
