@@ -41,15 +41,15 @@ function App() {
 
 
   return (
-
     <div className='font-montserrat bg-fundo h-dvh flex flex-col justify-evenly md:flex-row  px-12 md:px-10  py-8 md:py-2'>
-      <div>
-        <h1 className='text-roxoescuro font-anton font-extralight tracking-wide text-2xl md:text-4xl'> Lista de Compras </h1>
-        <h2 className='text-1xl md:text-3xl font-regular my-2'> Adicionar itens a lista </h2>
+
+      <div className='pt-8'>
+        <h1 className='text-roxoescuro font-anton font-extralight tracking-wide text-3xl md:text-3xl'> Lista de Compras </h1>
+        <h2 className='text-xl md:text-xl font-regular my-2'> Adicionar itens a lista </h2>
 
         <div className='flex flex-col'>
           <input
-            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 text-1xl md:text-xl font-regular'
+            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 text-1xl md:text-md font-regular w-auto'
             type="text"
             placeholder="Nome do Item"
             value={textoDeEntrada}
@@ -57,7 +57,7 @@ function App() {
           />
 
           <input
-            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 text-1xl md:text-xl font-regular'
+            className='bg-fundoPlaceholder border-2 rounded-md  my-2 p-1.5 text-1xl md:text-md font-regular w-auto'
             type="number"
             placeholder="Quantidade de itens"
             value={quantidades}
@@ -75,14 +75,14 @@ function App() {
         <ol className='list-decimal text-1xl font-regular mt-8'>
           {itens.map((item, indice) => (
 
-            <li key={indice} className='text-1xl font-regular pb-6'>
+            <li key={indice} className='font-regular pb-6'>
 
               <div>
                 <div className='flex flex-row justify-between'>
 
-                  <h1 className='text-roxoescuro font-anton tracking-wide'>{item.titulo}</h1>
+                  <h1 className='text-xl text-roxoescuro font-anton tracking-wide'>{item.titulo}</h1>
 
-                  <h1 className='text-1xl font-regular'>Quantidade - {item.quantidade}</h1>
+                  <h1 className='text-md font-regular'>Quantidade - {item.quantidade}</h1>
 
                 </div>
 
@@ -96,7 +96,7 @@ function App() {
                 </label>
 
                 <button
-                  className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro my-2 p-1.5 text-1xl font-regular w-6/12'
+                  className='bg-roxomaisescuro hover:bg-roxomaisclaro border-2 hover:border-roxomaisescuro rounded-md text-branco hover:text-roxomaisescuro my-2 p-1.5 text-1xl font-regular w-3/12'
                   onClick={() => excluirItem(indice)}>
                   Excluir
                 </button>
