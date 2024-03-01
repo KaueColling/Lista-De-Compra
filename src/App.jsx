@@ -2,42 +2,45 @@ import { useState, useEffect } from 'react'
 
 function App() {
 
-  const [itens, setItens] = useState([]);
-
-  const [textoDeEntrada, setTextoDeEntrada] = useState('');
-
-  const [quantidades, setQuantidades] = useState('');
-
-  const salvarDetalhesNoLocalStorage = (itensAtualizados) => {
-    localStorage.setItem('itens', JSON.stringify(itensAtualizados));
-  };
-
-  useEffect(() => {
-    const savedItens = JSON.parse(localStorage.getItem('itens'));
-    if (savedItens) {
-      setItens(savedItens);
-    }
-  }, []);
-
-  const adicionarItem = () => {
-    if (textoDeEntrada.trim() !== '') {
-      const novoItem = {
-        titulo: textoDeEntrada,
-        quantidade: quantidades, // Adicionando quantidade ao novo item
-      };
-      setItens([...itens, novoItem]);
-      setTextoDeEntrada('');
-      setQuantidades('');
-      salvarDetalhesNoLocalStorage([...itens, novoItem]);
-    }
-  };
-
-  const excluirItem = (indice) => {
-    const itensAtualizados = [...itens];
-    itensAtualizados.splice(indice, 1);
-    setItens(itensAtualizados);
-    salvarDetalhesNoLocalStorage(itensAtualizados);
-  };
+   // Define os estados para armazenar itens da lista, texto de entrada e quantidades
+   const [itens, setItens] = useState([]);
+   const [textoDeEntrada, setTextoDeEntrada] = useState('');
+   const [quantidades, setQuantidades] = useState('');
+ 
+   // Função para salvar os detalhes da lista no armazenamento local
+   const salvarDetalhesNoLocalStorage = (itensAtualizados) => {
+     localStorage.setItem('itens', JSON.stringify(itensAtualizados));
+   };
+ 
+   // Efeito para carregar os itens salvos do armazenamento local quando o componente monta
+   useEffect(() => {
+     const savedItens = JSON.parse(localStorage.getItem('itens'));
+     if (savedItens) {
+       setItens(savedItens);
+     }
+   }, []);
+ 
+   // Função para adicionar um novo item à lista
+   const adicionarItem = () => {
+     if (textoDeEntrada.trim() !== '') {
+       const novoItem = {
+         titulo: textoDeEntrada,
+         quantidade: quantidades,
+       };
+       setItens([...itens, novoItem]);
+       setTextoDeEntrada('');
+       setQuantidades('');
+       salvarDetalhesNoLocalStorage([...itens, novoItem]);
+     }
+   };
+ 
+   // Função para excluir um item da lista
+   const excluirItem = (indice) => {
+     const itensAtualizados = [...itens];
+     itensAtualizados.splice(indice, 1);
+     setItens(itensAtualizados);
+     salvarDetalhesNoLocalStorage(itensAtualizados);
+   };
 
 
   return (
