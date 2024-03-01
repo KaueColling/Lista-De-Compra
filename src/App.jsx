@@ -85,7 +85,7 @@ function App() {
 
                   <h1 className='text-xl text-roxoescuro font-anton tracking-wide'>{item.titulo}</h1>
 
-                  <h1 className='text-md font-regular'>Quantidade - {item.quantidade}</h1>
+                  <h1 className='text-md font-regular'>Quantidade: {item.quantidade}</h1>
 
                 </div>
 
